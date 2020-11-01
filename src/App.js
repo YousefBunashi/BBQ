@@ -1,23 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+const styles = {
+  text: {
+    textAlign: "center",
+  },
+  bbqImage: {
+    display: "block",
+    marginLeft: "auto",
+    marginRight: "auto",
+    width: "50%",
+  },
+};
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h1 style={styles.text}>Second Best Burger in Town</h1>
+      <img
+        style={styles.bbqImage}
+        src="https://thehuntr.com/wp-content/uploads/2017/11/BBQ-Box-Dubai-2-663x440.jpg"
+      />
     </div>
   );
 }
