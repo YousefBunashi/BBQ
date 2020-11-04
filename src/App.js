@@ -1,49 +1,19 @@
-// import items from "./items.js";
-
-const styles = {
-  text: {
-    textAlign: "center",
-  },
-  shopImage: {
-    display: "block",
-    marginLeft: "auto",
-    marginRight: "auto",
-    width: "50%",
-  },
-  bbqImage: {
-    width: "200px",
-    height: "200px",
-  },
-  list: {
-    alignItems: "centr",
-    justfycontent: "center",
-    display: "flex",
-  },
-  item: {
-    margin: "20px",
-  },
-};
+import BbqList from "./components/BbqList";
+import { ShopImage, Title, ListWrapper, BbqWrapper } from "./styles";
 
 function App() {
-  const itemList = items.map((item) => (
-    <div style={styles.item}>
-      <img style={styles.itemImage} src={item.image} alt={item.name} />
-      <p style={styles.text}>{item.name}</p>
-      <p style={styles.text}>{item.price} KD</p>
-    </div>
-  ));
-
   return (
     <div>
       <div>
-        <h1 style={styles.text}>Second Best Burger in Town</h1>
-        <img
-          style={styles.shopImage}
-          src="https://thehuntr.com/wp-content/uploads/2017/11/BBQ-Box-Dubai-2-663x440.jpg"
+        <Title>Second Best Burger in Town</Title>
+        <ShopImage
           alt="BBQ SHOP"
+          src="https://i.pinimg.com/originals/28/c4/38/28c4388c15cd76096a6401bc02a3d5d8.jpg"
         />
       </div>
-      <div style={styles.list}>{itemList}</div>
+
+      <div></div>
+      <BbqList />
     </div>
   );
 }
