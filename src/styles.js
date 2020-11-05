@@ -1,20 +1,33 @@
-import styled from "styled-components";
+import styled, { createGlobalStyle } from "styled-components";
+
+const GlobleStyle = createGlobalStyle` 
+body {
+color:  ${(props) => props.theme.mainColor};
+background-color: ${(props) => props.theme.backgroundColor};
+
+}
+`;
 
 const ShopImage = styled.img`
   display: block;
   margin-left: auto;
   margin-right: auto;
-  width: "50%";
+  width: 50%;
 `;
 const Title = styled.h1`
   text-align: center;
   color: purple;
+  background  black;
+`;
+
+const Description = styled.h4`
+  text-align: center;
 `;
 const ListWrapper = styled.div`
   align-items: center;
   justify-content: center;
   display: flex;
-  flex-wrap: wrap;
+  object-fit: cover;
 `;
 
 const BbqWrapper = styled.div`
@@ -26,7 +39,11 @@ const BbqWrapper = styled.div`
   }
   p {
     text-align: center;
+
+    &.bbq-price {
+      color: ${(props) => props.theme.pink};};
+    }
   }
 `;
 
-export { ListWrapper, Title, ShopImage, BbqWrapper };
+export { GlobleStyle, Title, Description, ShopImage, ListWrapper, BbqWrapper };

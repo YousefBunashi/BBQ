@@ -6,7 +6,7 @@ const BbqItem = (props) => {
     <BbqWrapper>
       <img src={props.bbqobject.image} alt={props.bbqobject.name} />
       <p>{props.bbqobject.name}</p>
-      <p>{props.bbqobject.price} KD</p>
+      <p className="bbq-price">{props.bbqobject.price} KD</p>
     </BbqWrapper>
   );
 };

@@ -1,7 +1,7 @@
 const bbqs = [
   {
     id: 1,
-    name: "fmailly box",
+    name: "Familly box",
     price: 60,
     image:
       "https://thehuntr.com/wp-content/uploads/2017/11/BBQ-Box-Dubai-2-663x440.jpg",
