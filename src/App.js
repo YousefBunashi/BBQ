@@ -1,22 +1,39 @@
 import BbqList from "./components/BbqList";
-import { GlobleStyle, Title, Description, ShopImage } from "./styles";
+import {
+  GlobleStyle,
+  Title,
+  ThemeButton,
+  Description,
+  ShopImage,
+} from "./styles";
 import { ThemeProvider } from "styled-components";
+import React, { useState } from "react";
 
 const theme = {
-  mainColor: "#242424", // main font color
-  backgroundColor: "papayawhip", // main background color
-  pink: "#ff85a2",
+  light: {
+    mainColor: "#242424", // main font color
+    backgroundColor: "papayawhip", // main background color
+    pink: "#ff85a2",
+  },
+  dark: {
+    mainColor: "#papayawhip", // main font color
+    backgroundColor: "#242424", // main background color
+    pink: "#ff85a2",
+  },
 };
 
 function App() {
-  let counter = 0;
+  const [currentTheme, setCurrentTheme] = useState("light");
+  const toggleTheme = () => {
+    if (currentTheme === "light") setCurrentTheme("dark");
+    else setCurrentTheme("light");
+  };
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={theme[currentTheme]}>
       <GlobleStyle />
+
+      <ThemeButton onClick={toggleTheme}>Dark Mode</ThemeButton>
       <div>
-        <button>-1</button>
-        {counter}
-        <button onClick={() => alert("hello")}>+1</button>
         <Title>Second Best Burger in Town</Title>
         <Description>More than Burgers</Description>
         <ShopImage
