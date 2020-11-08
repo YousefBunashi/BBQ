@@ -1,10 +1,27 @@
-import BbqItem from "./BbqItem";
 import bbqs from "../bbqs.js";
+import { useState } from "react";
+
+// Stayles
 import { ListWrapper } from "../styles";
+// Comopnents
+import BbqItem from "./BbqItem";
+import SearchBar from "./SearchBar";
 
 const BbqList = () => {
-  const bbqList = bbqs.map((bbq) => <BbqItem bbqobject={bbq} />);
+  const [query, setQuery] = useState("");
+  const filteredBbqs = bbqs.filter((bbq) =>
+    bbq.name.toLowerCase().includes(query.toLowerCase())
+  );
+  const bbqList = filteredBbqs.map((bbq) => (
+    <BbqItem bbqobject={bbq} key={bbq.id} />
+  ));
+  return (
+    <div>
+      <SearchBar setQuery={setQuery} />
 
-  return <ListWrapper>{bbqList}</ListWrapper>;
+      <ListWrapper>{bbqList}</ListWrapper>
+    </div>
+  );
 };
+
 export default BbqList;

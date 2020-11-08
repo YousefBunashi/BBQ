@@ -5,6 +5,7 @@ import {
   ThemeButton,
   Description,
   ShopImage,
+  // SearchBarStyled,
 } from "./styles";
 import { ThemeProvider } from "styled-components";
 import React, { useState } from "react";
@@ -32,7 +33,9 @@ function App() {
     <ThemeProvider theme={theme[currentTheme]}>
       <GlobleStyle />
 
-      <ThemeButton onClick={toggleTheme}>Dark Mode</ThemeButton>
+      <ThemeButton onClick={toggleTheme}>
+        {currentTheme === "light" ? "Dark" : "Light"} Mode
+      </ThemeButton>
       <div>
         <Title>Second Best Burger in Town</Title>
         <Description>More than Burgers</Description>

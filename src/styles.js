@@ -8,6 +8,12 @@ background-color: ${(props) => props.theme.backgroundColor};
 }
 `;
 
+const SearchBarStyled = styled.input`
+  padding: 0.5rem;
+  margin: 1rem auto;
+  display: block;
+  width: 40%;
+`;
 const ThemeButton = styled.button`
   font-size: 1em;
   margin: 1.25em;
@@ -62,4 +68,5 @@ export {
   ListWrapper,
   BbqWrapper,
   ThemeButton,
+  SearchBarStyled,
 };
