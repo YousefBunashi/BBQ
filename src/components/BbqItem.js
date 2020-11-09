@@ -1,14 +1,17 @@
+import bbqs from "../bbqs";
 import { BbqWrapper } from "../styles";
+import DeleteButton from "./buttons/DeleteButton";
 
 const BbqItem = (props) => {
-  console.log(props.bbqobject.name);
+  const bbq = props.bbq;
+
   return (
     <BbqWrapper>
-      <img src={props.bbqobject.image} alt={props.bbqobject.name} />
-      <p>{props.bbqobject.name}</p>
-      <p className="bbq-price">{props.bbqobject.price} KD</p>
+      <img src={bbq.image} alt={bbq.name} onClick={() => props.setBbq(bbq)} />
+      <p>{bbq.name}</p>
+      <p className="bbq-price">{bbq.price} KD</p>
+      <DeleteButton deleteBbq={props.deleteBbq} bbqId={bbq.id} />
     </BbqWrapper>
   );
 };
-
 export default BbqItem;

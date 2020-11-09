@@ -7,13 +7,25 @@ import { ListWrapper } from "../styles";
 import BbqItem from "./BbqItem";
 import SearchBar from "./SearchBar";
 
-const BbqList = () => {
+const BbqList = (props) => {
   const [query, setQuery] = useState("");
-  const filteredBbqs = bbqs.filter((bbq) =>
+  const [_bbqs, setBbqs] = useState(bbqs);
+
+  const deleteBbq = (bbqId) => {
+    const updatedBbqs = _bbqs.filter((bbq) => bbq.id !== bbqId);
+    setBbqs(updatedBbqs);
+  };
+
+  const filteredBbqs = _bbqs.filter((bbq) =>
     bbq.name.toLowerCase().includes(query.toLowerCase())
   );
   const bbqList = filteredBbqs.map((bbq) => (
-    <BbqItem bbqobject={bbq} key={bbq.id} />
+    <BbqItem
+      bbq={bbq}
+      key={bbq.id}
+      setBbq={props.setBbq}
+      deleteBbq={deleteBbq}
+    />
   ));
   return (
     <div>

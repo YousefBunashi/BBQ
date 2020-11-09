@@ -59,7 +59,24 @@ const BbqWrapper = styled.div`
     }
   }
 `;
+const DetailWrapper = styled.div`
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 80%;
 
+  img {
+    width: 40%;
+    float: left;
+  }
+
+  p {
+    vertical-align: middle;
+  }
+`;
+export const DeleteButtonStyled = styled.p`
+  color: ${(props) => props.theme.red};
+`;
 export {
   GlobleStyle,
   Title,
@@ -69,4 +86,5 @@ export {
   BbqWrapper,
   ThemeButton,
   SearchBarStyled,
+  DetailWrapper,
 };
