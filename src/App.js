@@ -1,16 +1,12 @@
 import BbqList from "./components/BbqList";
-import {
-  GlobleStyle,
-  Title,
-  ThemeButton,
-  Description,
-  ShopImage,
-  // SearchBarStyled,
-} from "./styles";
+import { GlobleStyle, ThemeButton } from "./styles";
 import { ThemeProvider } from "styled-components";
 import React, { useState } from "react";
 import BbqDetail from "./components/BbqDetail";
+import Home from "./components/Home";
+import { Route, Switch } from "react-router";
 import bbqs from "./bbqs";
+import { Link } from "react-router-dom";
 
 const theme = {
   light: {
@@ -28,33 +24,39 @@ const theme = {
 };
 
 function App() {
-  const [bbq, setBbq] = useState(null);
   const [currentTheme, setCurrentTheme] = useState("light");
+  const [_bbqs, setBbqs] = useState(bbqs);
+  const deleteBbq = (bbqId) => {
+    const updatedBbqs = _bbqs.filter((bbq) => bbq.id !== bbqId);
+    setBbqs(updatedBbqs);
+  };
+
   const toggleTheme = () => {
     if (currentTheme === "light") setCurrentTheme("dark");
     else setCurrentTheme("light");
-  };
-  const setView = () => {
-    if (bbq) return <BbqDetail bbq={bbq} />;
-    return <BbqList setBbq={setBbq} />;
   };
 
   return (
     <ThemeProvider theme={theme[currentTheme]}>
       <GlobleStyle />
+      <Link to="/bbqs" style={{ margin: 10, float: "right" }}>
+        Bbqs
+      </Link>
 
       <ThemeButton onClick={toggleTheme}>
         {currentTheme === "light" ? "Dark" : "Light"} Mode
       </ThemeButton>
-      <div>
-        <Title>Second Best Burger in Town</Title>
-        <Description>More than Burgers</Description>
-        <ShopImage
-          alt="BBQ SHOP"
-          src="https://i.pinimg.com/originals/28/c4/38/28c4388c15cd76096a6401bc02a3d5d8.jpg"
-        />
-      </div>
-      {setView()}
+      <Switch>
+        <Route path="/bbqs/:bbqId">
+          <BbqDetail bbqs={_bbqs} deleteBbq={deleteBbq} />;{" "}
+        </Route>
+        <Route path="/bbqs">
+          <BbqList bbqs={_bbqs} deleteBbq={deleteBbq} />
+        </Route>
+        <Route path="/">
+          <Home />
+        </Route>
+      </Switch>
     </ThemeProvider>
   );
 }

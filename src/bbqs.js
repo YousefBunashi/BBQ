@@ -2,6 +2,7 @@ const bbqs = [
   {
     id: 1,
     name: "Familly box",
+    slug: "familly-box",
     price: 60,
     description: "some cookie.. sold by dozens",
     image:
@@ -10,6 +11,7 @@ const bbqs = [
   {
     id: 2,
     name: "Hot dog box",
+    slug: "Hot-dog-box",
     price: 30,
     description: "Amarican HOT Dog.. ",
     image:
@@ -18,6 +20,7 @@ const bbqs = [
   {
     id: 3,
     name: "slider box",
+    slug: "slider-box",
     price: 30,
     description: "some cookie.. sold by dozens",
     image:
