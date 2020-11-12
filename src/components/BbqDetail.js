@@ -1,14 +1,15 @@
 import React from "react";
-import { useParams } from "react-router";
+import { useParams, Redirect } from "react-router";
 import { DetailWrapper } from "../styles";
 import DeleteButton from "./buttons/DeleteButton";
 
-const BbqDetail = (props) => {
-  const bbqId = useParams().bbqId;
-  const bbq = props.bbqs.find((bbq) => bbq.slug === bbqId);
+const BbqDetail = (bbqs, deleteBbq) => {
+  const bbqSlug = useParams().bbqSlug;
+  const bbq = bbqs.find((_bbq) => _bbq.slug === bbqSlug);
+  if (!bbq) return <Redirect to="/bbqs" />;
 
-  const handelDelete = (bbqId) => {
-    props.deleteBbq(bbqId);
+  const handelDelete = (bbqSlug) => {
+    deleteBbq(bbqSlug);
   };
 
   return (

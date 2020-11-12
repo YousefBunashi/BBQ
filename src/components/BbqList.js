@@ -28,10 +28,10 @@ const BbqList = (props) => {
     />
   ));
   return (
-    <div>
+    <div className="container">
       <SearchBar setQuery={setQuery} />
 
-      <ListWrapper>{bbqList}</ListWrapper>
+      <ListWrapper className="row">{bbqList}</ListWrapper>
     </div>
   );
 };

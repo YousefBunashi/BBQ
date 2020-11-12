@@ -1,12 +1,13 @@
 import BbqList from "./components/BbqList";
-import { GlobleStyle, ThemeButton } from "./styles";
+import { GlobleStyle } from "./styles";
 import { ThemeProvider } from "styled-components";
 import React, { useState } from "react";
 import BbqDetail from "./components/BbqDetail";
 import Home from "./components/Home";
 import { Route, Switch } from "react-router";
 import bbqs from "./bbqs";
-import { Link } from "react-router-dom";
+
+import NavBar from "./components/NavBar";
 
 const theme = {
   light: {
@@ -39,16 +40,11 @@ function App() {
   return (
     <ThemeProvider theme={theme[currentTheme]}>
       <GlobleStyle />
-      <Link to="/bbqs" style={{ margin: 10, float: "right" }}>
-        Bbqs
-      </Link>
+      <NavBar currentTheme={currentTheme} toggleTheme={toggleTheme} />
 
-      <ThemeButton onClick={toggleTheme}>
-        {currentTheme === "light" ? "Dark" : "Light"} Mode
-      </ThemeButton>
       <Switch>
-        <Route path="/bbqs/:bbqId">
-          <BbqDetail bbqs={_bbqs} deleteBbq={deleteBbq} />;{" "}
+        <Route path="/bbqs/:bbqSlug">
+          <BbqDetail bbqs={_bbqs} deleteBbq={deleteBbq} />;
         </Route>
         <Route path="/bbqs">
           <BbqList bbqs={_bbqs} deleteBbq={deleteBbq} />
