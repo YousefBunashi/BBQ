@@ -3,7 +3,7 @@ import { BbqWrapper } from "../styles";
 import DeleteButton from "./buttons/DeleteButton";
 import { Link } from "react-router-dom";
 
-const BbqItem = ({ bbq, deleteBbq }) => {
+const BbqItem = ({ bbq }) => {
   //   const bbq = props.bbq;
   // const { bbq } = props;
 
@@ -14,7 +14,7 @@ const BbqItem = ({ bbq, deleteBbq }) => {
       </Link>
       <p>{bbq.name}</p>
       <p className="bbq-price">{bbq.price} KD</p>
-      <DeleteButton deleteBbq={deleteBbq} bbqId={bbq.id} />
+      <DeleteButton bbqId={bbq.id} />
     </BbqWrapper>
   );
 };

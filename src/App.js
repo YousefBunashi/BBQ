@@ -8,6 +8,8 @@ import { Route, Switch } from "react-router";
 import bbqs from "./bbqs";
 
 import NavBar from "./components/NavBar";
+// import slugify from "react-slugify";
+// import bbqStore from "./stores/bbqStore";
 
 const theme = {
   light: {
@@ -27,10 +29,9 @@ const theme = {
 function App() {
   const [currentTheme, setCurrentTheme] = useState("light");
   const [_bbqs, setBbqs] = useState(bbqs);
-  const deleteBbq = (bbqId) => {
-    const updatedBbqs = _bbqs.filter((bbq) => bbq.id !== bbqId);
-    setBbqs(updatedBbqs);
-  };
+
+  // newBbq.id = _bbqs[_bbqs.length - 1].id + 1;
+  // newBbq.slug = slugify(newBbq.name);
 
   const toggleTheme = () => {
     if (currentTheme === "light") setCurrentTheme("dark");
@@ -44,10 +45,10 @@ function App() {
 
       <Switch>
         <Route path="/bbqs/:bbqSlug">
-          <BbqDetail bbqs={_bbqs} deleteBbq={deleteBbq} />;
+          <BbqDetail bbqs={_bbqs} />;
         </Route>
         <Route path="/bbqs">
-          <BbqList bbqs={_bbqs} deleteBbq={deleteBbq} />
+          <BbqList bbqs={_bbqs} />
         </Route>
         <Route path="/">
           <Home />
