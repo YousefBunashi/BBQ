@@ -11,7 +11,7 @@ const bbqs = [
   {
     id: 2,
     name: "Hot dog box",
-    slug: "Hot-dog-box",
+    slug: "hot-dog-box",
     price: 30,
     description: "Amarican HOT Dog.. ",
     image:

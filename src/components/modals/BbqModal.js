@@ -4,20 +4,22 @@ import { useState } from "react";
 import { CreateButtonStyled } from "../../styles.js";
 import bbqStore from "../../stores/bbqStore";
 
-const BbqModal = ({ isOpen, closeModal }) => {
-  const [bbq, setBbq] = useState({
-    name: "",
-    price: 0,
-    description: "",
-    image: "",
-  });
+const BbqModal = ({ isOpen, closeModal, oldBbq }) => {
+  const [bbq, setBbq] = useState(
+    oldBbq ?? {
+      name: "",
+      price: 0,
+      description: "",
+      image: "",
+    }
+  );
 
   const handleChange = (event) => {
     setBbq({ ...bbq, [event.target.name]: event.target.value });
   };
   const handleSubmit = (event) => {
     event.preventDefault();
-    bbqStore.createBbq(bbq);
+    bbqStore[oldBbq ? "updateBbq" : "createBbq"](bbq);
     closeModal();
   };
 
@@ -29,6 +31,7 @@ const BbqModal = ({ isOpen, closeModal }) => {
             <label>Name</label>
             <input
               required
+              value={bbq.name}
               name="name"
               type="text"
               className="form-control"
@@ -40,6 +43,7 @@ const BbqModal = ({ isOpen, closeModal }) => {
             <input
               required
               name="price"
+              value={bbq.price}
               type="number"
               min="1"
               className="form-control"
@@ -52,6 +56,7 @@ const BbqModal = ({ isOpen, closeModal }) => {
           <input
             required
             name="description"
+            value={bbq.description}
             type="text"
             className="form-control"
             onChange={handleChange}
@@ -62,13 +67,14 @@ const BbqModal = ({ isOpen, closeModal }) => {
           <input
             required
             name="image"
+            value={bbq.image}
             type="text"
             className="form-control"
             onChange={handleChange}
           />
         </div>
-        <CreateButtonStyled className="btn float-right">
-          Create
+        <CreateButtonStyled className="btn float-right" type="submit">
+          {oldBbq ? "Update" : "Create"}
         </CreateButtonStyled>
       </form>
     </Modal>

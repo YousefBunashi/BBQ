@@ -1,11 +1,9 @@
-import rect from "react";
 import { DeleteButtonStyled } from "../../styles";
 import bbqStore from "../../stores/bbqStore";
 
-const DeleteButton = (bbqId) => {
+const DeleteButton = ({ bbqId }) => {
   return (
-    <DeleteButtonStyled onClick={() => bbqStore.DeleteButton}>
-      {" "}
+    <DeleteButtonStyled onClick={() => bbqStore.DeleteButton(bbqId)}>
       DELETE
     </DeleteButtonStyled>
   );

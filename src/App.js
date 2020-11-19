@@ -45,10 +45,10 @@ function App() {
 
       <Switch>
         <Route path="/bbqs/:bbqSlug">
-          <BbqDetail bbqs={_bbqs} />;
+          <BbqDetail />;
         </Route>
         <Route path="/bbqs">
-          <BbqList bbqs={_bbqs} />
+          <BbqList />
         </Route>
         <Route path="/">
           <Home />

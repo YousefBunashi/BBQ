@@ -1,5 +1,6 @@
 import bbqs from "../bbqs";
-import { action, makeObservable, observable } from "mobx";
+import { action, makeObservable, observable, reaction } from "mobx";
+import slugify from "react-slugify";
 
 class BbqsStore {
   bbqs = bbqs;
@@ -8,7 +9,8 @@ class BbqsStore {
     makeObservable(this, {
       bbqs: observable,
       createBbq: action,
-      //   deleteBbq: action,
+      updateBbq: action,
+      DeleteButton: action,
     });
   }
 
@@ -20,6 +22,12 @@ class BbqsStore {
   DeleteButton = (bbqId) => {
     this.bbqs = this.bbqs.filter((bbq) => bbq.id !== bbqId);
   };
+  updateBbq = (updatedBbq) => {
+    const bbq = this.bbqs.find((bbq) => bbq.id === updatedBbq.id);
+    for (const key in bbq) bbq[key] = updatedBbq[key];
+    bbq.slug = slugify(bbq.name);
+  };
 }
+
 const bbqsStore = new BbqsStore();
 export default bbqsStore;

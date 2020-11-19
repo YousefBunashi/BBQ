@@ -4,7 +4,7 @@ import BbqModal from "../modals/BbqModal";
 import { useState } from "react";
 
 const AddButton = () => {
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
 
   const closeModal = () => setIsOpen(false);
 

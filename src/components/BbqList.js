@@ -10,15 +10,13 @@ import BbqItem from "./BbqItem";
 import SearchBar from "./SearchBar";
 import AddButton from "./buttons/AddButton";
 
-const BbqList = (props) => {
+const BbqList = () => {
   const [query, setQuery] = useState("");
 
   const filteredBbqs = bbqsStore.bbqs.filter((bbq) =>
     bbq.name.toLowerCase().includes(query.toLowerCase())
   );
-  const bbqList = filteredBbqs.map((bbq) => (
-    <BbqItem bbq={bbq} key={bbq.id} setBbq={props.Bbq} />
-  ));
+  const bbqList = filteredBbqs.map((bbq) => <BbqItem bbq={bbq} key={bbq.id} />);
   return (
     <div className="container">
       <SearchBar setQuery={setQuery} />
