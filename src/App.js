@@ -5,7 +5,6 @@ import React, { useState } from "react";
 import BbqDetail from "./components/BbqDetail";
 import Home from "./components/Home";
 import { Route, Switch } from "react-router";
-import bbqs from "./bbqs";
 
 import NavBar from "./components/NavBar";
 // import slugify from "react-slugify";
@@ -28,7 +27,7 @@ const theme = {
 
 function App() {
   const [currentTheme, setCurrentTheme] = useState("light");
-  const [_bbqs, setBbqs] = useState(bbqs);
+  // const [_bbqs, setBbqs] = useState(bbqs);
 
   // newBbq.id = _bbqs[_bbqs.length - 1].id + 1;
   // newBbq.slug = slugify(newBbq.name);

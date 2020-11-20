@@ -1,18 +1,23 @@
-import bbqs from "../bbqs";
 import { action, makeObservable, observable, reaction } from "mobx";
 import slugify from "react-slugify";
+import axios from "axios";
 
 class BbqsStore {
-  bbqs = bbqs;
+  bbqs = [];
 
   constructor() {
     makeObservable(this, {
       bbqs: observable,
       createBbq: action,
       updateBbq: action,
-      DeleteButton: action,
+      // DeleteButton: action,
+      fetchBbqs: action,
     });
   }
+  fetchBbqs = async () => {
+    const response = await axios.get("http://localhost:8000/bbqs");
+    this.bbqs = response.data;
+  };
 
   createBbq = (newbbq) => {
     // bbq.id = this.bbqs[this.bbqs.length - 1].id + 1;
@@ -30,4 +35,6 @@ class BbqsStore {
 }
 
 const bbqsStore = new BbqsStore();
+bbqsStore.fetchBbqs();
+
 export default bbqsStore;

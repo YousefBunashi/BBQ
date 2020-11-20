@@ -1,8 +1,7 @@
-// import bbqs from "../bbqs";
 import { BbqWrapper } from "../styles";
 import DeleteButton from "./buttons/DeleteButton";
 import { Link } from "react-router-dom";
-import bbqs from "../bbqs";
+
 import UpdateButton from "./buttons/UpdateButton";
 import { observer } from "mobx-react";
 
