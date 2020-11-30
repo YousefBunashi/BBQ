@@ -13,6 +13,8 @@ const BbqModal = ({ isOpen, closeModal, oldBbq }) => {
       image: "",
     }
   );
+  const handleImage = (event) =>
+    setBbq({ ...bbq, image: event.target.files[0] });
 
   const handleChange = (event) => {
     setBbq({ ...bbq, [event.target.name]: event.target.value });
@@ -67,10 +69,9 @@ const BbqModal = ({ isOpen, closeModal, oldBbq }) => {
           <input
             required
             name="image"
-            value={bbq.image}
-            type="text"
+            type="file"
             className="form-control"
-            onChange={handleChange}
+            onChange={handleImage}
           />
         </div>
         <CreateButtonStyled className="btn float-right" type="submit">

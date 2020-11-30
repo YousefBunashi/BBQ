@@ -1,5 +1,5 @@
-import { action, makeObservable, observable, reaction } from "mobx";
-import slugify from "react-slugify";
+import { action, makeObservable, observable } from "mobx";
+
 import axios from "axios";
 
 class BbqsStore {
@@ -25,12 +25,13 @@ class BbqsStore {
 
   updateBbq = async (updatedBbq) => {
     try {
-      await axios.put(
-        `http://localhost:8000/bbqs/${updatedBbq.id}`,
-        updatedBbq
-      );
+      const formData = new FormData();
+
+      for (const key in updatedBbq) formData.append(key, updatedBbq[key]);
+      await axios.put(`http://localhost:8000/bbqs/${updatedBbq.id}`, formData);
       const bbq = this.bbqs.find((bbq) => bbq.id === updatedBbq.id);
-      for (const key in bbq) bbq[key] = updatedBbq[key];
+      for (const key in updatedBbq) bbq[key] = updatedBbq[key];
+      bbq.image = URL.createObjectURL(updatedBbq.image);
     } catch (error) {
       console.log("BbqsStore -> updateBbq -> error", error);
     }
@@ -39,7 +40,9 @@ class BbqsStore {
     // bbq.id = this.bbqs[this.bbqs.length - 1].id + 1;
     // bbq.slug = slugify(bbq.name);
     try {
-      const res = await axios.post("http://localhost:8000/bbqs", newbbq);
+      const formData = new FormData();
+      for (const key in newbbq) formData.append(key, newbbq[key]);
+      const res = await axios.post("http://localhost:8000/bbqs", formData);
       this.bbqs.push(res.data);
     } catch (error) {
       console.log("bbqstore -> createBbq -> error", error);
