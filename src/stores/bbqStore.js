@@ -4,10 +4,12 @@ import axios from "axios";
 
 class BbqsStore {
   bbqs = [];
+  loading = true;
 
   constructor() {
     makeObservable(this, {
       bbqs: observable,
+      loading: observable,
       createBbq: action,
       updateBbq: action,
       // DeleteButton: action,
@@ -18,10 +20,12 @@ class BbqsStore {
     try {
       const response = await axios.get("http://localhost:8000/bbqs");
       this.bbqs = response.data;
+      this.loading = false;
     } catch (error) {
       console.error("BbqsStore -> fetchBbqs -> error", error);
     }
   };
+  getBbqById = (bbqId) => this.bbqs.find((bbq) => bbq.id === bbqId);
 
   updateBbq = async (updatedBbq) => {
     try {
@@ -36,14 +40,18 @@ class BbqsStore {
       console.log("BbqsStore -> updateBbq -> error", error);
     }
   };
-  createBbq = async (newbbq) => {
+  createBbq = async (newbbq, burger) => {
     // bbq.id = this.bbqs[this.bbqs.length - 1].id + 1;
     // bbq.slug = slugify(bbq.name);
     try {
       const formData = new FormData();
       for (const key in newbbq) formData.append(key, newbbq[key]);
-      const res = await axios.post("http://localhost:8000/bbqs", formData);
+      const res = await axios.post(
+        "http://localhost:8000/burgers/${burger.Id}/bbqs",
+        formData
+      );
       this.bbqs.push(res.data);
+      burger.bbqs.push({ id: res.data.id });
     } catch (error) {
       console.log("bbqstore -> createBbq -> error", error);
     }

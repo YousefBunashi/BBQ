@@ -3,7 +3,7 @@ import { BsPlusCircle } from "react-icons/bs";
 import BbqModal from "../modals/BbqModal";
 import { useState } from "react";
 
-const AddButton = () => {
+const AddButton = (burger) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const closeModal = () => setIsOpen(false);
@@ -13,7 +13,7 @@ const AddButton = () => {
     <div>
       <>
         <BsPlusCircle className="float-right" size="2em" onClick={openModal} />
-        <BbqModal isOpen={isOpen} closeModal={closeModal} />
+        <BbqModal burger={burger} isOpen={isOpen} closeModal={closeModal} />
       </>
     </div>
   );

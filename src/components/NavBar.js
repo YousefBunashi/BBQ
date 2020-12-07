@@ -17,6 +17,9 @@ const NavBar = ({ currentTheme, toggleTheme }) => {
       </Logo>
       <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div className="navbar-nav">
+          <NavItem className="nav-item" to="/burgers">
+            burgers
+          </NavItem>
           <NavItem className="active" to="/Bbqs" style={{ padding: 10 }}>
             Bbqs
           </NavItem>

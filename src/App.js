@@ -1,14 +1,12 @@
-import BbqList from "./components/BbqList";
-import { GlobleStyle } from "./styles";
 import { ThemeProvider } from "styled-components";
-import React, { useState } from "react";
-import BbqDetail from "./components/BbqDetail";
-import Home from "./components/Home";
-import { Route, Switch } from "react-router";
+import { GlobalStyle } from "./styles";
 
+import React, { useState } from "react";
 import NavBar from "./components/NavBar";
-// import slugify from "react-slugify";
-// import bbqStore from "./stores/bbqStore";
+import Routes from "./Routes";
+import { observer } from "mobx-react";
+import burgersStore from "./stores/burgerStore";
+import bbqsStore from "./stores/bbqStore";
 
 const theme = {
   light: {
@@ -24,7 +22,6 @@ const theme = {
     red: "#ff3232",
   },
 };
-
 function App() {
   const [currentTheme, setCurrentTheme] = useState("light");
 
@@ -35,22 +32,14 @@ function App() {
 
   return (
     <ThemeProvider theme={theme[currentTheme]}>
-      <GlobleStyle />
+      <GlobalStyle />
       <NavBar currentTheme={currentTheme} toggleTheme={toggleTheme} />
-
-      <Switch>
-        <Route path="/bbqs/:bbqSlug">
-          <BbqDetail />;
-        </Route>
-        <Route path="/bbqs">
-          <BbqList />
-        </Route>
-        <Route path="/">
-          <Home />
-        </Route>
-      </Switch>
+      {burgersStore.loading || bbqsStore.loading ? (
+        <h1>Loadinggg</h1>
+      ) : (
+        <Routes />
+      )}
     </ThemeProvider>
   );
 }
-
-export default App;
+export default observer(App);

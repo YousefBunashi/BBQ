@@ -4,6 +4,7 @@ import { DetailWrapper } from "../styles";
 import DeleteButton from "./buttons/DeleteButton";
 import bbqStore from "../stores/bbqStore";
 import { Link } from "react-router-dom";
+import { observer } from "mobx-react";
 
 const BbqDetail = () => {
   const { bbqSlug } = useParams();
@@ -25,4 +26,4 @@ const BbqDetail = () => {
     </>
   );
 };
-export default BbqDetail;
+export default observer(BbqDetail);

@@ -8,7 +8,7 @@ export const Logo = styled(Link)`
     width: 8rem;
   }
 `;
-const GlobleStyle = createGlobalStyle` 
+export const GlobalStyle = createGlobalStyle` 
 body {
 color:  ${(props) => props.theme.mainColor};
 background-color: ${(props) => props.theme.backgroundColor};
@@ -75,6 +75,13 @@ const ListWrapper = styled.div`
   object-fit: cover;
 `;
 
+export const BurgerWrapper = styled.div`
+  
+  img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+  `;
 const BbqWrapper = styled.div`
   
   img {
@@ -109,7 +116,6 @@ export const DeleteButtonStyled = styled.p`
   color: ${(props) => props.theme.red};
 `;
 export {
-  GlobleStyle,
   Title,
   Description,
   ShopImage,
