@@ -4,6 +4,7 @@ import React from "react";
 import { Logo, ThemeButton, NavStyled, NavItem } from "../styles";
 import lightLogo from "../lightLogo.png";
 import darkLogo from "../darkLogo.png";
+import SignupButton from "./SignupButton";
 
 const NavBar = ({ currentTheme, toggleTheme }) => {
   return (
@@ -23,6 +24,7 @@ const NavBar = ({ currentTheme, toggleTheme }) => {
           <NavItem className="active" to="/Bbqs" style={{ padding: 10 }}>
             Bbqs
           </NavItem>
+          <SignupButton />
           <ThemeButton className="nav-item" onClick={toggleTheme}>
             {currentTheme === "light" ? "Dark" : "Light"} Mode
           </ThemeButton>
