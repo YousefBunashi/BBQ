@@ -21,7 +21,7 @@ const BurgerDetail = () => {
       <div className="container">
         <DetailWrapper className="col-12">
           <h4>{burger.name}</h4>
-          <img src={burger.image} />
+          <img src={burger.image} alt={burger.name} />
           <UpdateButton burger={burger} />
         </DetailWrapper>
       </div>

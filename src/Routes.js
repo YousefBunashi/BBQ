@@ -1,7 +1,6 @@
 import BbqList from "./components/BbqList";
 import BurgerList from "./components/BurgerList";
-import { GlobleStyle } from "./styles";
-import bbqsStore from "./stores/bbqStore";
+
 import BbqDetail from "./components/BbqDetail";
 import Home from "./components/Home";
 import { Route, Switch } from "react-router";

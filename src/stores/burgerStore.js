@@ -1,6 +1,6 @@
 import { action, makeObservable, observable } from "mobx";
 
-import axios from "axios";
+import instance from "./instance";
 
 class BurgersStore {
   burgers = [];
@@ -15,7 +15,7 @@ class BurgersStore {
   }
   fetchBurgers = async () => {
     try {
-      const response = await axios.get("http://localhost:8000/burgers");
+      const response = await instance.get("/burgers");
       this.burgers = response.data;
       this.loading = false;
     } catch (error) {
@@ -29,7 +29,7 @@ class BurgersStore {
     try {
       const formData = new FormData();
       for (const key in newburger) formData.append(key, newburger[key]);
-      const res = await axios.post("http://localhost:8000/burgers", formData);
+      const res = await instance.post("/burgers", formData);
       this.burgers.push(res.data);
     } catch (error) {
       console.log("burgerstore -> createBurger -> error", error);

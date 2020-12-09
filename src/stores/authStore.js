@@ -1,6 +1,6 @@
-import { action, makeAutoObservable } from "mobx";
-import axios from "axios";
-import Signup from "../components/modals/Signup";
+import { makeAutoObservable } from "mobx";
+import decode from "jwt-decode";
+import instance from "./instance";
 
 class AuthStore {
   constructor() {
@@ -9,9 +9,17 @@ class AuthStore {
 
   signup = async (userData) => {
     try {
-      await axios.post("http://localhost:8000/signup", userData);
+      await instance.post("/signup", userData);
     } catch (error) {
       console.log("AuthStore -> signup -> error", error);
+    }
+  };
+  signin = async (userData) => {
+    try {
+      const res = await instance.post("/signin", userData);
+      console.log(decode(res.data.token));
+    } catch (error) {
+      console.log("AuthStore -> signin -> error", error);
     }
   };
 }

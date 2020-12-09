@@ -1,6 +1,6 @@
 import { action, makeObservable, observable } from "mobx";
 
-import axios from "axios";
+import instance from "./instance";
 
 class BbqsStore {
   bbqs = [];
@@ -18,7 +18,7 @@ class BbqsStore {
   }
   fetchBbqs = async () => {
     try {
-      const response = await axios.get("http://localhost:8000/bbqs");
+      const response = await instance.get("/bbqs");
       this.bbqs = response.data;
       this.loading = false;
     } catch (error) {
@@ -32,7 +32,7 @@ class BbqsStore {
       const formData = new FormData();
 
       for (const key in updatedBbq) formData.append(key, updatedBbq[key]);
-      await axios.put(`http://localhost:8000/bbqs/${updatedBbq.id}`, formData);
+      await instance.put(`/bbqs/${updatedBbq.id}`, formData);
       const bbq = this.bbqs.find((bbq) => bbq.id === updatedBbq.id);
       for (const key in updatedBbq) bbq[key] = updatedBbq[key];
       bbq.image = URL.createObjectURL(updatedBbq.image);
@@ -41,15 +41,10 @@ class BbqsStore {
     }
   };
   createBbq = async (newbbq, burger) => {
-    // bbq.id = this.bbqs[this.bbqs.length - 1].id + 1;
-    // bbq.slug = slugify(bbq.name);
     try {
       const formData = new FormData();
       for (const key in newbbq) formData.append(key, newbbq[key]);
-      const res = await axios.post(
-        "http://localhost:8000/burgers/${burger.Id}/bbqs",
-        formData
-      );
+      const res = await instance.post(`/burgers/${burger.Id}/bbqs`, formData);
       this.bbqs.push(res.data);
       burger.bbqs.push({ id: res.data.id });
     } catch (error) {
@@ -59,7 +54,7 @@ class BbqsStore {
 
   DeleteButton = async (bbqId) => {
     try {
-      await axios.delete(`http://localhost:8000/bbqs/${bbqId}`);
+      await instance.delete(`/bbqs/${bbqId}`);
       this.bbqs = this.bbqs.filter((bbq) => bbq.id !== +bbqId);
     } catch (error) {
       console.log("BbqsStore -> deletebbq -> error", error);
