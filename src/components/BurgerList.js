@@ -8,7 +8,6 @@ import { ListWrapper } from "../styles";
 // Comopnents
 import BurgerItem from "./BurgerItem";
 import SearchBar from "./SearchBar";
-import AddButton from "./buttons/AddButton";
 
 const BurgerList = () => {
   const [query, setQuery] = useState("");
@@ -22,7 +21,7 @@ const BurgerList = () => {
   return (
     <div className="container">
       <SearchBar setQuery={setQuery} />
-      <AddButton />
+
       <ListWrapper className="row">{burgerList}</ListWrapper>
     </div>
   );

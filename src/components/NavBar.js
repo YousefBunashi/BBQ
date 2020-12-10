@@ -1,11 +1,19 @@
 import React from "react";
 // import { NavLink } from "react-router-dom";
 // Styling
-import { Logo, ThemeButton, NavStyled, NavItem } from "../styles";
+import {
+  Logo,
+  ThemeButton,
+  NavStyled,
+  NavItem,
+  UsernameStyled,
+} from "../styles";
 import lightLogo from "../lightLogo.png";
 import darkLogo from "../darkLogo.png";
 import SignupButton from "./SignupButton";
 import SigninButton from "./SigninButton";
+import authStore from "../stores/authStore";
+import { observer } from "mobx-react";
 
 const NavBar = ({ currentTheme, toggleTheme }) => {
   return (
@@ -25,8 +33,15 @@ const NavBar = ({ currentTheme, toggleTheme }) => {
           <NavItem className="active" to="/Bbqs" style={{ padding: 10 }}>
             Bbqs
           </NavItem>
-          <SignupButton />
-          <SigninButton />
+          {/* if the user is logged in */}
+          {authStore.user ? (
+            <UsernameStyled>Hello, {authStore.user.username}</UsernameStyled>
+          ) : (
+            <>
+              <SignupButton />
+              <SigninButton />
+            </>
+          )}
           <ThemeButton className="nav-item" onClick={toggleTheme}>
             {currentTheme === "light" ? "Dark" : "Light"} Mode
           </ThemeButton>
@@ -35,4 +50,4 @@ const NavBar = ({ currentTheme, toggleTheme }) => {
     </NavStyled>
   );
 };
-export default NavBar;
+export default observer(NavBar);
