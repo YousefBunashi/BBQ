@@ -40,13 +40,16 @@ class BbqsStore {
       console.log("BbqsStore -> updateBbq -> error", error);
     }
   };
-  createBbq = async (newbbq, burger) => {
+  createBbq = async (newbbq, butchery) => {
     try {
       const formData = new FormData();
       for (const key in newbbq) formData.append(key, newbbq[key]);
-      const res = await instance.post(`/burgers/${burger.Id}/bbqs`, formData);
+      const res = await instance.post(
+        `/butcherys/${butchery.Id}/bbqs`,
+        formData
+      );
       this.bbqs.push(res.data);
-      burger.bbqs.push({ id: res.data.id });
+      butchery.bbqs.push({ id: res.data.id });
     } catch (error) {
       console.log("bbqstore -> createBbq -> error", error);
     }

@@ -5,7 +5,7 @@ import React, { useState } from "react";
 import NavBar from "./components/NavBar";
 import Routes from "./Routes";
 import { observer } from "mobx-react";
-import burgersStore from "./stores/burgerStore";
+import butcheryStore from "./stores/butcheryStore";
 import bbqsStore from "./stores/bbqStore";
 
 const theme = {
@@ -34,7 +34,7 @@ function App() {
     <ThemeProvider theme={theme[currentTheme]}>
       <GlobalStyle />
       <NavBar currentTheme={currentTheme} toggleTheme={toggleTheme} />
-      {burgersStore.loading || bbqsStore.loading ? (
+      {butcheryStore.loading || bbqsStore.loading ? (
         <h1>Loadinggg</h1>
       ) : (
         <Routes />

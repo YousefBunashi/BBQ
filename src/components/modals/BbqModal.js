@@ -4,10 +4,10 @@ import { useState } from "react";
 import { CreateButtonStyled } from "../../styles.js";
 import bbqStore from "../../stores/bbqStore";
 
-const BbqModal = ({ burger, isOpen, closeModal, oldBbq }) => {
+const BbqModal = ({ butchery, isOpen, closeModal, oldBbq }) => {
   const [bbq, setBbq] = useState(
     oldBbq ?? {
-      burgerId: "burgerId",
+      butcheryId: "butcheryId",
       name: "",
       price: 0,
       description: "",
@@ -22,7 +22,7 @@ const BbqModal = ({ burger, isOpen, closeModal, oldBbq }) => {
   };
   const handleSubmit = (event) => {
     event.preventDefault();
-    bbqStore[oldBbq ? "updateBbq" : "createBbq"](bbq, burger);
+    bbqStore[oldBbq ? "updateBbq" : "createBbq"](bbq, butchery);
     closeModal();
   };
 

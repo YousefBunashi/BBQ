@@ -87,7 +87,7 @@ const ListWrapper = styled.div`
   object-fit: cover;
 `;
 
-export const BurgerWrapper = styled.div`
+export const ButcheryWrapper = styled.div`
   
   img {
     width: 200px;

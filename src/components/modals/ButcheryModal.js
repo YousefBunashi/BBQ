@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { BsPlusCircle } from "react-icons/bs";
-import BurgerModal from "../modals/BurgerModal";
+import ButcheryModal from "./ButcheryModal";
 
-const AddBurgerButton = () => {
+const AddButcheryButton = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const closeModal = () => setIsOpen(false);
@@ -11,9 +11,9 @@ const AddBurgerButton = () => {
   return (
     <>
       <BsPlusCircle className="float-right" size="2em" onClick={openModal} />
-      <BurgerModal isOpen={isOpen} closeModal={closeModal} />
+      <ButcheryModal isOpen={isOpen} closeModal={closeModal} />
     </>
   );
 };
 
-export default AddBurgerButton;
+export default AddButcheryButton;
