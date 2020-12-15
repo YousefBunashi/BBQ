@@ -11,7 +11,7 @@ import authStore from "../stores/authStore";
 
 const ButcheryDetail = () => {
   const { butcherySlug } = useParams();
-  const butchery = butcheryStore.butcherys.find(
+  const butchery = butcheryStore.butcheries.find(
     (_butchery) => _butchery.slug === butcherySlug
   );
   if (!butchery) return <Redirect to="/" />;
