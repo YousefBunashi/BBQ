@@ -127,6 +127,7 @@ const DetailWrapper = styled.div`
 export const DeleteButtonStyled = styled.p`
   color: ${(props) => props.theme.red};
 `;
+
 export {
   Title,
   Description,

@@ -1,26 +1,29 @@
-// import butcherys from "../butcherys.js";
+// Styles
+import { Title } from "../styles";
 import { useState } from "react";
-import butcheryStore from "../stores/butcheryStore";
-import { observer } from "mobx-react";
 
-// Stayles
-import { ListWrapper } from "../styles";
-// Comopnents
+// Components
 import ButcheryItem from "./ButcheryItem";
+
+// Stores
+import butcheryStore from "../stores/butcheryStore";
 import SearchBar from "./SearchBar";
+import { observer } from "mobx-react";
 
 const ButcheryList = () => {
   const [query, setQuery] = useState("");
 
-  const butcheryList = butcheryStore.Butcheries.filter((butchery) =>
-    butchery.name.toLowerCase().includes(query.toLowerCase())
-  ).map((butchery) => <ButcheryItem butchery={butchery} key={butchery.id} />);
+  const butcheryList = butcheryStore.butcheries
+    .filter((butchery) =>
+      butchery.name.toLowerCase().includes(query.toLowerCase())
+    )
+    .map((butchery) => <ButcheryItem butchery={butchery} key={butchery.id} />);
 
   return (
     <div className="container">
+      <Title>Butcheries</Title>
       <SearchBar setQuery={setQuery} />
-
-      <ListWrapper className="row">{butcheryList}</ListWrapper>
+      {butcheryList}
     </div>
   );
 };

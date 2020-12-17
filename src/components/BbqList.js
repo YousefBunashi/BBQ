@@ -18,17 +18,11 @@ const BbqList = ({ bbqs = [] }) => {
   );
   const bbqList = filteredBbqs.map((bbq) => <BbqItem bbq={bbq} key={bbq.id} />);
 
-  // const BbqList = ({ bbqs }) => {
-  //   const [query, setQuery] = useState("");
-
-  //   const bbqList = bbqs
-  //     .filter((bbq) => bbq.name.toLowerCase().includes(query.toLowerCase()))
-  //     .map((bbq) => <BbqItem bbq={bbq} key={bbq.id} />);
   return (
-    <div className="container">
+    <div>
       <SearchBar setQuery={setQuery} />
       <AddButton />
-      <ListWrapper className="row">{bbqList}</ListWrapper>
+      <ListWrapper>{bbqList}</ListWrapper>
     </div>
   );
 };

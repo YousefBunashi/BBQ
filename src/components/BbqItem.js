@@ -6,9 +6,6 @@ import UpdateButton from "./buttons/UpdateButton";
 import { observer } from "mobx-react";
 
 const BbqItem = ({ bbq }) => {
-  //   const bbq = props.bbq;
-  // const { bbq } = props;
-
   return (
     <BbqWrapper className="col-lg-3 col-md-4 col-sm-6">
       <Link to={`/bbqs/${bbq.slug}`} className="d-flex justify-content-center">
